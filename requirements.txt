@@ -1,2 +1,4 @@
 djangorestframework
 python-dotenv
+psycopg2-binary
+python-slugify
