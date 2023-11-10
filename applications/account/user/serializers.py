@@ -13,7 +13,8 @@ class RegistrationSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'email', 'password', 'password_confirmation')
         extra_kwargs = {
-            'password': {'write_only': True}
+            'password': {'write_only': True},
+
         }
 
     def validate_password(self, password):
@@ -23,7 +24,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs: dict):
         password = attrs.get('password')
-        password_confirmation = attrs.get('password_confirmation')
+        password_confirmation = attrs.pop('password_confirmation')
         if password != password_confirmation:
             raise serializers.ValidationError(
                 {'message': 'passwords must match'},
