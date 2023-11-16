@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from slugify import slugify
 
+User = get_user_model()
+
 
 class Gender(models.TextChoices):
     No = 'no'
@@ -9,12 +11,12 @@ class Gender(models.TextChoices):
     Woman = 'woman'
 
 
-class Profile(models.Model):
+class ProfileModel(models.Model):
     slug = models.SlugField(primary_key=True)
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=24, blank=True)
     last_name = models.CharField(max_length=24, blank=True)
-    birth_date = models.DateField()
+    birth_date = models.DateField(auto_now_add=True)
     gender = models.CharField(
         max_length=6, blank=True,
         choices=Gender.choices, default=Gender.No)

@@ -7,8 +7,8 @@ class WordsSerializer(ModelSerializer):
         model = WordsModel
         fields = [
             'slug', 'eng_word', 'eng_transcription',
-            'ru_word', 'part_of_speech', 'level']
-
+            'ru_word', 'part_of_speech', 'level'
+            ]
         extra_kwargs = {
             'slug': {'read_only': True}
         }

@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'applications.account.user',
-    'applications.course.vocabulary'
+    'applications.account.user_profile',
+    'applications.course.vocabulary',
 ]
 
 MIDDLEWARE = [

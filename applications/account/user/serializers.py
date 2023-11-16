@@ -1,6 +1,7 @@
 from rest_framework import serializers, status
 from django.contrib.auth import get_user_model, password_validation
 from applications.account import utils
+from applications.account.user_profile.models import ProfileModel
 
 User = get_user_model()
 
@@ -35,4 +36,5 @@ class RegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         utils.create_activation_code(user)
         utils.send_activation_code(user)
+        ProfileModel.objects.create(user=user)
         return user
